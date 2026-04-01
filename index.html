@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para la Lic/Maeta ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(#ffdde1, #ee9ca7);
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Botón */
+        .btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 15px 30px;
+            font-size: 18px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #d81b60;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Carta */
+        .carta {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 30px;
+            width: 90%;
+            max-width: 350px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            text-align: center;
+            opacity: 0;
+            transition: 0.8s;
+        }
+
+        .carta.activa {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        h1 {
+            color: #e91e63;
+        }
+
+        p {
+            color: #444;
+            line-height: 1.6;
+        }
+
+        /* Corazones */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(45deg);
+            animation: float 6s infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(45deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <iframe id="musica" width="0" height="0"
+src=""
+frameborder="0" allow="autoplay"></iframe>
+
+<audio id="audio" loop>
+    <source src="unidiota.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Botón -->
+<button class="btn" onclick="abrirCarta()">Abrir carta 💌</button>
+
+<!-- Carta -->
+<div class="carta" id="carta">
+    <h1>Para la mas Lic/Maeta 💌</h1>
+    <p>
+        Hola Yissel...<br><br>
+        Se que te graduaste el viernes, así que decidí hacerlo de una forma diferente.<br><br>
+
+        No sabes que tan orgulloso me siento de ti, me alegra muchisimo que te hayas graduado, 
+        eres increible, eres espectacular, eres la mejor noob.❤️<br><br>
+
+        Tal vez fui un idiota... por todo, por aparecerme asi de la nada pero de verdad 
+        no sabes que feliz estoy por tus logros y porque tambien te extraño<br><br>
+
+        Solo quería que lo supieras ❤️<br><br>
+
+        Con cariño... <br><br>
+        Emmanuel 🐒
+    </p>
+</div>
+
+<script>
+    let esMovil = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (esMovil) {
+        document.body.style.overflow = "auto";
+        const carta =document.getElementById("carta");
+        carta.style.width = "90%";
+        carta.style.maxWidth = "350px";
+
+        const btn = document.querySelector(".btn");
+        btn.style.fontsize = "20px";
+        btn.style.padding = "18px 35px";
+
+    }
+
+function abrirCarta() {
+    document.getElementById("carta").classList.add("activa");
+
+    // Ocultar botón
+    document.querySelector(".btn").style.display = "none";
+
+    // Iniciar música
+    const audio = document.getElementById("audio");
+    audio.play();
+}
+
+// Corazones
+function crearCorazon() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(crearCorazon, esMovil ? 600:300);
+</script>
+
+</body>
+</html>
